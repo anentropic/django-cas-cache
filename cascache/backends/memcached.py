@@ -18,7 +18,8 @@ class CASMixin(object):
             new_val = update_func(current_val)
             if new_val is None:
                 raise NoneValueError('Your update_func must not return None')
-            result = self._cache.cas(key, update_func(current_val))
+            result = self._cache.cas(key, new_val,
+                                     self._get_memcache_timeout(timeout))
             if result:
                 break
             i += 1

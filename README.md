@@ -24,3 +24,6 @@ function to calculate the new value:
 cache = get_cache('default')
 success = cache.cas('mykey', lambda x: x * 2)
 ```
+
+A `DummyCASCache` backend with the `cas` method is also provided for those
+who like to use `DummyCache` during development.
