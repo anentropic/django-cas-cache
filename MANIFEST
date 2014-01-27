@@ -2,4 +2,5 @@
 setup.py
 cascache/__init__.py
 cascache/backends/__init__.py
+cascache/backends/dummy.py
 cascache/backends/memcached.py

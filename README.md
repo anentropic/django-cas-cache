@@ -10,7 +10,7 @@ backend. Or just use the backend provided:
 ```python
 CACHES = {
     'default': {
-        'BACKEND': 'cascache.backends.memcached.MemcachedCache',
+        'BACKEND': 'cascache.backends.memcached.MemcachedCASCache',
         'LOCATION': '127.0.0.1:11211',
     }
 }
