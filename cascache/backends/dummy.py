@@ -1,5 +1,6 @@
-from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.core.cache.backends.dummy import DummyCache
+
+from cascache.compatibility import DEFAULT_TIMEOUT
 
 
 class CASMixin(object):

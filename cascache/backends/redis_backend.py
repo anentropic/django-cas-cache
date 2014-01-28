@@ -3,11 +3,11 @@ Note:
 This is designed to be used with https://github.com/niwibe/django-redis backend
 """
 from django.conf import settings
-from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from redis import WatchError
 from redis.client import BasePipeline
 from redis_cache.cache import RedisCache
 
+from cascache.compatibility import DEFAULT_TIMEOUT
 from cascache.exceptions import NoneValueError
 
 
