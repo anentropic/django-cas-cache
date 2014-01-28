@@ -1,11 +1,10 @@
 from django.conf import settings
 from django.core.cache.backends.memcached import MemcachedCache, PyLibMCCache
 
+from cascache.exceptions import NoneValueError
+
+
 MAX_RETRIES = settings.get('CAS_CACHE_MAX_RETRIES', 10)
-
-
-class NoneValueError(Exception):
-    pass
 
 
 class CASMixin(object):

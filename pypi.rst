@@ -2,6 +2,6 @@
 django-cas-cache
 ================
 
-Django cache backend (currently memcache-only) supporting CAS (compare-and-set) operations
+Django cache backends supporting CAS (compare-and-set) operation. Memcache, Redis and Dummy backends.
 
 See GitHub for usage and docs.
