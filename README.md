@@ -28,3 +28,10 @@ update function to calculate the new value:
 cache = get_cache('default')
 success = cache.cas('mykey', lambda x: x * 2)
 ```
+
+Redis backend adds a `cas_many` method analogous to `set_many`, takes a dict:
+
+```python
+cache = get_cache('default')
+success = cache.cas_many({'key1': lambda x: x * 2, 'key2': lambda x: x / 2})
+```
