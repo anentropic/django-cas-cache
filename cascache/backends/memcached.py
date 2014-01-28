@@ -4,7 +4,7 @@ from django.core.cache.backends.memcached import MemcachedCache, PyLibMCCache
 from cascache.exceptions import NoneValueError
 
 
-MAX_RETRIES = settings.get('CAS_CACHE_MAX_RETRIES', 10)
+MAX_RETRIES = getattr(settings, 'CAS_CACHE_MAX_RETRIES', 10)
 
 
 class CASMixin(object):
