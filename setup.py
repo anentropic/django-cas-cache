@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='django-cas-cache',
-    version='0.1.9',
+    version='0.1.10',
     packages=[
         'cascache',
         'cascache.backends',
