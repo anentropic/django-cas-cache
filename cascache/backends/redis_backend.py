@@ -14,19 +14,20 @@ MAX_RETRIES = getattr(settings, 'CAS_CACHE_MAX_RETRIES', 10)
 
 class CASMixin(object):
     def cas(self, key, update_func, timeout=0, version=None):
-        key = self.make_key(key, version=version)
-        with self.client.pipeline() as pipe:
+        with self.raw_client.pipeline() as pipe:
             i = 0
             while i < MAX_RETRIES:
                 try:
                     pipe.watch(key)
-                    current_val = pipe.get(key)
+                    current_val = self.get(key, version=version, client=pipe)
                     assert current_val is not None
                     new_val = update_func(current_val)
                     if new_val is None:
                         raise NoneValueError('Your update_func must not return None')
+                    print new_val
                     pipe.multi()
-                    result = pipe.set(key, new_val, timeout=timeout)
+                    result = self.set(key, new_val, timeout=timeout,
+                                      version=version, client=pipe)
                     pipe.execute()
                     break
                 except WatchError:
