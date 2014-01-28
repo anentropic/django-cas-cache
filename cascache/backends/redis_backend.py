@@ -3,6 +3,7 @@ Note:
 This is designed to be used with https://github.com/niwibe/django-redis backend
 """
 from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from redis import WatchError
 from redis.client import BasePipeline
 from redis_cache.cache import RedisCache
@@ -14,7 +15,8 @@ MAX_RETRIES = getattr(settings, 'CAS_CACHE_MAX_RETRIES', 10)
 
 
 class CASMixin(object):
-    def cas(self, key, update_func, timeout=0, version=None, client=None):
+    def cas(self, key, update_func, timeout=DEFAULT_TIMEOUT, version=None,
+            client=None):
         if not client:
             client = self.raw_client
         if not isinstance(client, BasePipeline):
@@ -42,7 +44,8 @@ class CASMixin(object):
             return False
         return result
 
-    def cas_many(self, key_to_func_map, timeout=0, version=None, client=None):
+    def cas_many(self, key_to_func_map, timeout=DEFAULT_TIMEOUT, version=None,
+                 client=None):
         if not client:
             client = self.raw_client
         if not isinstance(client, BasePipeline):

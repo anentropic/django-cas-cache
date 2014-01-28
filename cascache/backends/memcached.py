@@ -1,14 +1,14 @@
 from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.core.cache.backends.memcached import MemcachedCache, PyLibMCCache
 
 from cascache.exceptions import NoneValueError
-
 
 MAX_RETRIES = getattr(settings, 'CAS_CACHE_MAX_RETRIES', 10)
 
 
 class CASMixin(object):
-    def cas(self, key, update_func, timeout=0, version=None):
+    def cas(self, key, update_func, timeout=DEFAULT_TIMEOUT, version=None):
         key = self.make_key(key, version=version)
         i = 0
         while i < MAX_RETRIES:
