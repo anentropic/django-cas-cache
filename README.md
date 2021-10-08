@@ -1,6 +1,8 @@
 django-cas-cache
 ================
 
+### NOTE: obviously this package is now superseded by the `get_or_set` method of cache backend in newer versions of Django https://docs.djangoproject.com/en/3.2/topics/cache/#django.core.caches.cache.get_or_set
+
 Django cache backends supporting CAS (compare-and-set) operation. Memcache,
 Redis and Dummy backends.
 
